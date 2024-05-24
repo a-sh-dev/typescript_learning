@@ -20,7 +20,12 @@ const ohms = [
 
 const getBandValue = (band: ColourType): number => colourArray.indexOf(band);
 
-const decodedResistorValue = ([band1, band2, band3, ...restBand]): string => {
+export const decodedResistorValue = ([
+  band1,
+  band2,
+  band3,
+  ...restBand
+]: ColourType[]): string => {
   if (restBand) {
     console.log('Ignored band(s): ', restBand);
   }

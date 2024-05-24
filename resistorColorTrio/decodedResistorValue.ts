@@ -25,9 +25,11 @@ const decodedResistorValue = ([band1, band2, band3, ...restBand]): string => {
     console.log('Ignored band(s): ', restBand);
   }
 
-  const bandValue =
-    (getBandValue(band1) * 10 + getBandValue(band2)) *
-    10 ** getBandValue(band3);
+  const [tens, ones, zeros] = [band1, band2, band3].map((band) =>
+    getBandValue(band),
+  );
+
+  const bandValue = (tens * 10 + ones) * 10 ** zeros;
 
   const [divisor, prefix] = ohms.find(([divisor]) => bandValue >= divisor) ?? [
     1,

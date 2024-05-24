@@ -10,7 +10,7 @@ const colourArray = [
   'grey',
   'white',
 ] as const;
-type ColourType = (typeof colourArray)[number];
+export type ColourType = (typeof colourArray)[number];
 
 const ohms = [
   [1_000_000_000, 'giga'],
@@ -26,7 +26,7 @@ export const decodedResistorValue = ([
   band3,
   ...restBand
 ]: ColourType[]): string => {
-  if (restBand) {
+  if (restBand.length) {
     console.log('Ignored band(s): ', restBand);
   }
 

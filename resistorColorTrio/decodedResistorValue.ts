@@ -20,7 +20,11 @@ const ohms = [
 
 const getBandValue = (band: ColourType): number => colourArray.indexOf(band);
 
-const decodedResistorValue = ([band1, band2, band3]): string => {
+const decodedResistorValue = ([band1, band2, band3, ...restBand]): string => {
+  if (restBand) {
+    console.log('Ignored band(s): ', restBand);
+  }
+
   const bandValue =
     (getBandValue(band1) * 10 + getBandValue(band2)) *
     10 ** getBandValue(band3);
@@ -32,3 +36,15 @@ const decodedResistorValue = ([band1, band2, band3]): string => {
 
   return `${bandValue / divisor} ${prefix}ohms`;
 };
+
+decodedResistorValue(['orange', 'orange', 'black']); // '33 ohms'
+decodedResistorValue(['blue', 'grey', 'brown']); // '680 ohms'
+decodedResistorValue(['red', 'black', 'red']); // '2 kiloohms'
+decodedResistorValue(['green', 'brown', 'orange']); // '51 kiloohms'
+decodedResistorValue(['yellow', 'violet', 'yellow']); // '470 kiloohms'
+decodedResistorValue(['blue', 'violet', 'blue']); // '67 megaohms'
+decodedResistorValue(['black', 'black', 'black']); // '0 ohms'
+decodedResistorValue(['white', 'white', 'white']); // '99 gigaohms'
+decodedResistorValue(['black', 'grey', 'black']); // '8 ohms'
+decodedResistorValue(['blue', 'green', 'yellow', 'orange']); // '650 kiloohms'
+decodedResistorValue(['blue', 'green', 'yellow', 'orange', 'violet', 'brown']); // '650 kiloohms'

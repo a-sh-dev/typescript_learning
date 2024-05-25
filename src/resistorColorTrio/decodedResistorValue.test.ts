@@ -27,7 +27,7 @@ describe('Resistor Colours: "decodedResistorValue function"', () => {
     ],
     [
       `Ignore extra colour bands`,
-      `650 kiloohmss`,
+      `650 kiloohms`,
       ['blue', 'green', 'yellow', 'orange', 'violet', 'brown'],
     ],
   ])('%#. %s -> %s', (_, expectedResult, bands) => {

@@ -1,6 +1,6 @@
 name: Automated Unit Tests
 
-on: [pull_request, push]
+on: [push, pull_request]
 
 jobs:
   tests:
@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: pnpm install
-        run: pnpm ci
+      - name: npm install
+        run: npm ci
       - name: tests
-        run: pnpm test
+        run: npm test
